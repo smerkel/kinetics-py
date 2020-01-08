@@ -33,24 +33,25 @@ This will output the fit results to the screen, plot the kinetics models, and ge
 ### Full instructions
 
 This is the ouput of `./kinetics-fits.py -h`:
->usage: kinetics-fits.py [options] datafile
->
->Fit of a shear or nucleation and growth model for the perovskite to post-
->perovskite transformation. Adapted from C. Langrand PhD thesis.
->
->positional arguments:
->  datafile              Data file (required)
->
->optional arguments:
->  -h, --help            show this help message and exit
->  -P PE, --Pe PE        Pressure of point on pv / (pv+ppv) phase boundary in
->                        GPa. Default is 128.0
->  -T TE, --Te TE        Temperature of point on pv / (pv+ppv) phase in K.
->                        Default is 3300.0
->  -c CLAPEYRON, --clapeyron CLAPEYRON
->                        Clapeyron's slope in GPa/K. Default is 0.0067
->  -f FACTOR, --factor FACTOR
->                        Multiply times by 10^x in plotting. Default is 0.0
->  -n NONEOBSERVATION, --noneobservation NONEOBSERVATION
->                        File with negative observations. Default is None
+
+    usage: kinetics-fits.py [options] datafile
+    
+    Fit of a shear or nucleation and growth model for the perovskite to post-
+    perovskite transformation. Adapted from C. Langrand PhD thesis.
+    
+    positional arguments:
+      datafile              Data file (required)
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -P PE, --Pe PE        Pressure of point on pv / (pv+ppv) phase boundary in
+                            GPa. Default is 128.0
+      -T TE, --Te TE        Temperature of point on pv / (pv+ppv) phase in K.
+                            Default is 3300.0
+      -c CLAPEYRON, --clapeyron CLAPEYRON
+                            Clapeyron's slope in GPa/K. Default is 0.0067
+      -f FACTOR, --factor FACTOR
+                            Multiply times by 10^x in plotting. Default is 0.0
+      -n NONEOBSERVATION, --noneobservation NONEOBSERVATION
+                            File with negative observations. Default is None
 
