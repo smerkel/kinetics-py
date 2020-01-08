@@ -1,0 +1,15 @@
+1600 129.5 502 0.07 0.60 1.30
+1700 129.5 188 0.12 0.61 1.30
+1850 129.5 044 0.48 0.87 1.30
+1950 126.0 166 0.21 0.29 1.50
+2100 126.0 149 0.00 0.50 1.50
+2400 126.0 012 0.33 0.42 1.50
+# T (K), P (GPa), taux(s), wt% pPv at start, at end, DeltaV (A^3)
+#
+# Data from
+# 
+# C. Langrand, D. Andrault, S. Durand, Z. Konôpková, N. Hilairet, C. Thomas & S. Merkel (2019)
+# Kinetics and detectability of the bridgmanite to post-perovskite transformation in the Earth's D′′ layer 
+# Nat. Commun. , 10 [doi: 10.1038/s41467-019-13482-x] 
+# https://www.nature.com/articles/s41467-019-13482-x
+#
