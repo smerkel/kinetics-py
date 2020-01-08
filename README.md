@@ -30,7 +30,7 @@ To fit kinetics and generate plots assuming a Pv/pPv phase boundary given by a r
 
 This will output the fit results to the screen, plot the kinetics models, and generate files for the corresponding figures, in SVG and PNG format.
 
-Generate figures will look like this
+Generate figures will look like the one below
 ![Example results for a nucleation and growth model](https://github.com/smerkel/kinetics-py/blob/master/example-nuclGrowthModel.png)
 
 ### Full instructions
