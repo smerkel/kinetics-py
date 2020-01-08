@@ -48,7 +48,9 @@ font = {'family' : 'sans-serif','weight' : 'normal', 'size'   : 12}
 matplotlib.rc('font', **font)
 from matplotlib.patches import Rectangle
 from matplotlib.patches import Polygon
-
+# Import a new colormap that is better for  colour blind readers
+import cmocean
+import cmocean.cm as cmo
 
 #################################################################
 #
@@ -69,6 +71,14 @@ Pmax = 140.
 
 # Wait time when showing the plots
 waittime = 1.
+
+# Color scale
+# Regular color scale (red, green, blue)
+# colormap = cm.jet_r
+# Blue to red color scale, better for color blind people
+colormap = cmocean.tools.lighten(cmo.balance_r, 0.8) 
+# Contrasted blue to red as well
+# colormap = cm.coolwarm_r
 
 #################################################################
 #
@@ -191,7 +201,7 @@ def plotshearModel(E, A, C, Pexp, Texp, cold, warm, hot,factor,noneobservation):
 	
     # Plot kinetics as contours
 	levels = np.arange(-2, 10, 1)
-	CS = ax.contourf(1/inverseT2, P2, Z, levels, origin='lower', cmap=cm.jet_r, extend='both')
+	CS = ax.contourf(1/inverseT2, P2, Z, levels, origin='lower', cmap=colormap, extend='both')
 	CS2 = ax.contour(CS, levels,
 					colors='black',
 					origin='lower',
@@ -230,18 +240,18 @@ def plotshearModel(E, A, C, Pexp, Texp, cold, warm, hot,factor,noneobservation):
 	ax1.set_xlim(1500,4500)
 	ax1.invert_xaxis()
 	ax1.set_xticks([1000./0.25, 1000./.30, 1000./.40, 1000./.5, 1000./0.6])
-	ax1.set_xticklabels(["0.25", "0.30", "0.40", "0.50", "0.60"], fontsize=10)
-	ax1.set_xlabel("$\mathrm{1000/T (K^{-1})}$", fontsize=10)
+	ax1.set_xticklabels(["0.25", "0.30", "0.40", "0.50", "0.60"], fontsize=12)
+	ax1.set_xlabel("$\mathrm{1000/}T \mathrm{(K^{-1})}$", fontsize=12)
 	ax1.xaxis.tick_bottom()
 	ax1.xaxis.set_label_position("bottom")
 	
     # Flipping the x-axis to have warm temperatures on the left and adding labels
 	ax.set_xlim(1500,4500)
 	ax.invert_xaxis()
-	ax.set_xlabel('$\mathrm{Temperature (K)}$', fontsize=10)
+	ax.set_xlabel('$\mathrm{Temperature (K)}$', fontsize=12)
 	ax.xaxis.set_ticks_position('top')
 	ax.xaxis.set_label_position('top')
-	ax.tick_params(axis='both', which='major', labelsize=10)
+	ax.tick_params(axis='both', which='major', labelsize=12)
   
 	
 	# Secondary y-axis
@@ -249,21 +259,21 @@ def plotshearModel(E, A, C, Pexp, Texp, cold, warm, hot,factor,noneobservation):
 	ax2.set_ylim(Pmin,Pmax)
 	ax2.set_yticks([135.2, 130, 124, 118.4, 112.5])
 	ax2.set_yticklabels(["2891", "2800", "2700", "2600", "2500"])
-	ax2.set_ylabel("Depth (km)", fontsize=10)
+	ax2.set_ylabel("Depth (km)", fontsize=12)
 	ax2.yaxis.tick_right()
 	ax2.yaxis.set_label_position("right")
-	ax2.tick_params(axis='both', which='major', labelsize=10)
+	ax2.tick_params(axis='both', which='major', labelsize=12)
 	
 	#py-axis label
 	ax.set_ylim(Pmin,Pmax)
-	ax.set_ylabel('Pressure (GPa)', fontsize=10)
+	ax.set_ylabel('Pressure (GPa)', fontsize=12)
    
 	#plot title
 	label = "Shear model\n" + r"$\mathrm{P_e = %d  GPa, T_e = %d  K, \alpha = %.1f  MPa/K}$" % (Pe, Te, clapeyron*1000)
-	plt.text(0.05, 0.05, label, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=9, bbox=dict(edgecolor=(0.682, 0.682, 0.682), facecolor='white', alpha=1.0))
+	plt.text(0.05, 0.05, label, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=11, bbox=dict(edgecolor=(0.682, 0.682, 0.682), facecolor='white', alpha=1.0))
 	
-	plt.text(3000, 135.5, "Core-Mantle Boundary", horizontalalignment='center', verticalalignment='bottom', fontsize=10)
-	plt.text(4300, 130, "D''\nlayer", horizontalalignment='center', verticalalignment='center', fontsize=10)
+	plt.text(3000, 135.5, "Core-Mantle Boundary", horizontalalignment='center', verticalalignment='bottom', fontsize=12)
+	plt.text(4300, 130, "D''\nlayer", horizontalalignment='center', verticalalignment='center', fontsize=12)
 
 	#save plot in svg type with the name : "shearModel"
 	plt.savefig('shearModel.svg')
@@ -341,7 +351,7 @@ def plotnuclGrowthModel(E,A,B,Pexp,Texp,cold,warm,hot,factor,noneobservation):
 
 	# Contours for kinetics
 	levels = np.arange(-2, 10, 1)
-	CS = ax.contourf(1/inverseT2, P2, Z,levels, origin='lower', cmap=cm.jet_r, extend='both')
+	CS = ax.contourf(1/inverseT2, P2, Z,levels, origin='lower', cmap=colormap, extend='both')
 	CS2 = ax.contour(CS, levels,
 					colors='black',
 					origin='lower',
@@ -371,7 +381,7 @@ def plotnuclGrowthModel(E,A,B,Pexp,Texp,cold,warm,hot,factor,noneobservation):
 	#plot colorbar
 	CB = plt.colorbar(CS, shrink=0.8, pad=0.2)
 	CB.ax.yaxis.major.formatter._useMathText = True
-	CB.set_label(r'$\mathrm{log(\tau)}$', rotation=270, fontsize=10)
+	CB.set_label(r'$\mathrm{log(\tau)}$', rotation=270, fontsize=12)
 	
 	
 	# Secondary labelling with twiny, for inverse temperatures
@@ -380,18 +390,18 @@ def plotnuclGrowthModel(E,A,B,Pexp,Texp,cold,warm,hot,factor,noneobservation):
 	ax1.set_xlim(1500,4500)
 	ax1.invert_xaxis()
 	ax1.set_xticks([1000./0.25, 1000./.30, 1000./.40, 1000./.5, 1000./0.6])
-	ax1.set_xticklabels(["0.25", "0.30", "0.40", "0.50", "0.60"], fontsize=10)
-	ax1.set_xlabel("$\mathrm{1000/T (K^{-1})}$", fontsize=10)
+	ax1.set_xticklabels(["0.25", "0.30", "0.40", "0.50", "0.60"], fontsize=12)
+	ax1.set_xlabel("$\mathrm{1000/}T \mathrm{(K^{-1})}$", fontsize=12)
 	ax1.xaxis.tick_bottom()
 	ax1.xaxis.set_label_position("bottom")
 	
     # Flipping the x-axis to have warm temperatures on the left and adding labels
 	ax.set_xlim(1500,4500)
 	ax.invert_xaxis()
-	ax.set_xlabel('$\mathrm{Temperature (K)}$', fontsize=10)
+	ax.set_xlabel('$\mathrm{Temperature (K)}$', fontsize=12)
 	ax.xaxis.set_ticks_position('top')
 	ax.xaxis.set_label_position('top')
-	ax.tick_params(axis='both', which='major', labelsize=10)
+	ax.tick_params(axis='both', which='major', labelsize=12)
   
 	
 	# Secondary y-axis
@@ -399,21 +409,21 @@ def plotnuclGrowthModel(E,A,B,Pexp,Texp,cold,warm,hot,factor,noneobservation):
 	ax2.set_ylim(Pmin,Pmax)
 	ax2.set_yticks([135.2, 130, 124, 118.4, 112.5])
 	ax2.set_yticklabels(["2891", "2800", "2700", "2600", "2500"])
-	ax2.set_ylabel("Depth (km)", fontsize=10)
+	ax2.set_ylabel("Depth (km)", fontsize=12)
 	ax2.yaxis.tick_right()
 	ax2.yaxis.set_label_position("right")
-	ax2.tick_params(axis='both', which='major', labelsize=10)
+	ax2.tick_params(axis='both', which='major', labelsize=12)
 	
 	#py-axis label
 	ax.set_ylim(Pmin,Pmax)
-	ax.set_ylabel('Pressure (GPa)', fontsize=10)
+	ax.set_ylabel('Pressure (GPa)', fontsize=12)
    
 	#plot title
 	label = "Nucleation and growth model\n" + r"$\mathrm{P_e = %d  GPa, T_e = %d  K, \alpha = %.1f  MPa/K}$" % (Pe, Te, clapeyron*1000)
-	plt.text(0.05, 0.05, label, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=9, bbox=dict(edgecolor=(0.682, 0.682, 0.682), facecolor='white', alpha=1.0))
+	plt.text(0.05, 0.05, label, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=11, bbox=dict(edgecolor=(0.682, 0.682, 0.682), facecolor='white', alpha=1.0))
 	
-	plt.text(3000, 135.5, "Core-Mantle Boundary", horizontalalignment='center', verticalalignment='bottom', fontsize=10)
-	plt.text(4300, 130, "D''\nlayer", horizontalalignment='center', verticalalignment='center', fontsize=10)
+	plt.text(3000, 135.5, "Core-Mantle Boundary", horizontalalignment='center', verticalalignment='bottom', fontsize=12)
+	plt.text(4300, 130, "D''\nlayer", horizontalalignment='center', verticalalignment='center', fontsize=12)
 
 	#save plot in svg type with the name : "shearModel"
 	plt.savefig('nuclGrowthModel.svg')
@@ -605,3 +615,6 @@ def main(argv):
 # Calling main, if necessary
 if __name__ == "__main__":
     main(sys.argv[1:])
+
+
+
