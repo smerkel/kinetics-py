@@ -1,0 +1,16 @@
+# Points with no Pv-pPv transformation
+# P in GPa, T in K
+116.8 1700
+121.0 1780
+121.0 1620
+121.0 1700
+121.0 2050
+121.0 2250
+#
+# Data from
+# 
+# C. Langrand, D. Andrault, S. Durand, Z. Konôpková, N. Hilairet, C. Thomas & S. Merkel (2019)
+# Kinetics and detectability of the bridgmanite to post-perovskite transformation in the Earth's D′′ layer 
+# Nat. Commun. , 10 [doi: 10.1038/s41467-019-13482-x] 
+# https://www.nature.com/articles/s41467-019-13482-x
+#
